@@ -55,11 +55,17 @@ jobs:
         tag_name: ${{ env.BUILD_NUMBER }}
         release_name: Release ${{ env.BUILD_NUMBER }}
 
+    - uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'bin-release.zip'
+        path: build/src/Release
+
     - uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # From actions/create-release@v1
-        asset_path: build/Release/example.exe
-        asset_name: example.exe
-        asset_content_type: application/exe
+        asset_path: bin-release.zip
+        asset_name: bin-release.zip
+        asset_content_type: application/zip
