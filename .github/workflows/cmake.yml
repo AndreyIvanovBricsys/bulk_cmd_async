@@ -59,7 +59,7 @@ jobs:
       with:
         type: 'zip'
         filename: 'bin-release.zip'
-        path: build/src/Release
+        path: 'build/src/Release/'
 
     - uses: actions/upload-release-asset@v1
       env:
